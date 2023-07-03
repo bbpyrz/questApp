@@ -4,14 +4,13 @@ import com.project.questApp.entities.Post;
 import com.project.questApp.request.PostCreateRequest;
 import com.project.questApp.request.PostUpdateRequest;
 import com.project.questApp.services.PostService;
-import jdk.incubator.vector.VectorOperators;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/posts")
 public class PostController {
     private PostService postService;
 

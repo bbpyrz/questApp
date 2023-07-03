@@ -5,10 +5,12 @@ import com.project.questApp.entities.Post;
 import com.project.questApp.entities.User;
 import com.project.questApp.repos.LikeRepository;
 import com.project.questApp.request.LikeCreateRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class LikeService {
     private LikeRepository likeRepository;
     private UserService userService;
