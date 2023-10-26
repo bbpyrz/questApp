@@ -3,6 +3,7 @@ package com.project.questApp.controllers;
 import com.project.questApp.entities.Post;
 import com.project.questApp.request.PostCreateRequest;
 import com.project.questApp.request.PostUpdateRequest;
+import com.project.questApp.response.PostResponse;
 import com.project.questApp.services.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class PostController {
 
     public PostController(PostService postService) {this.postService = postService;}
     @GetMapping
-    public List<Post> getAllPosts(@RequestParam Optional<Long> userId){
+    public List<PostResponse> getAllPosts(@RequestParam Optional<Long> userId){
         return postService.getAllPosts(userId);
     }
     @PostMapping

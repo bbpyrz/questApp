@@ -12,11 +12,13 @@ import javax.persistence.*;
 @Data
 public class Post {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//otomatik id üretiyor
     long id;
-    @ManyToOne(fetch = FetchType.LAZY)//user objesini hemen çekme
+    /*@ManyToOne(fetch = FetchType.LAZY)//user objesini hemen çekme
+    @JsonIgnore*/
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_Id",nullable=false)
     @OnDelete(action = OnDeleteAction.CASCADE)//Bir usersilindiği zaman postlarda silinsin
-    @JsonIgnore
     User user;
     String title;
     @Lob

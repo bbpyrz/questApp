@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Data
 public class Comment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//otomatik id üretiyor
     long id;
     @ManyToOne(fetch = FetchType.LAZY)//user objesini hemen çekme
     @JoinColumn(name = "post_Id",nullable=false)
