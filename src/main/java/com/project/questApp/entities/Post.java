@@ -18,7 +18,7 @@ public class Post {
     @JsonIgnore*/
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_Id",nullable=false)
-    @OnDelete(action = OnDeleteAction.CASCADE)//Bir usersilindiği zaman postlarda silinsin
+    @OnDelete(action = OnDeleteAction.CASCADE)//Bir user silindiği zaman postlarda silinsin
     User user;
     String title;
     @Lob
