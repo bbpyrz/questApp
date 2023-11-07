@@ -7,6 +7,7 @@ import com.project.questApp.services.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -69,14 +70,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception{
 
-        httpSecurity
-                .cors().and().csrf().disable()//cors filtreyi disable etmemizin amacı postmanden kontrol edecek olamamız
+        httpSecurity.cors()
+                .and()
+                .csrf()
+                .disable()
                 .exceptionHandling().authenticationEntryPoint(handler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeHttpRequests()
-                .antMatchers("/auth/**")//Bunla ilgili olan linklere demek burası
-                .permitAll()//Herkes girebilsin
-                .anyRequest().authenticated();//diğer linklere sokma
+                .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/posts")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/comments")
+                .permitAll().antMatchers("/auth/**")
+                .permitAll()
+                .anyRequest().authenticated();
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
